@@ -16,19 +16,19 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ score, hintsUsed, 
   const isPass = score >= 55;
   const maxPossible = Math.round(((10 - hintsUsed) / 10) * 100);
 
-  let title = "Helaas...";
-  let message = "De volgorde is nog niet helemaal juist.";
+  let title = "Spierscheuring... 🤕";
+  let message = "Ai, deze contractie loopt nog niet soepel. De volgorde rammelt aan alle kanten.";
   let HeaderIcon = AlertCircle;
   let bgClass = "bg-han-red"; // Default fail color
 
   if (isPerfect) {
-    title = "Perfect!";
-    message = "De spiercontractie verloopt foutloos. Uitstekend gedaan!";
+    title = "BAM! GOUD! 🥇";
+    message = "Olympisch niveau! Je snapt de 'Sliding Filament Theory' beter dan Huxley zelf. Lekker bezig!";
     HeaderIcon = Trophy;
     bgClass = "bg-green-600";
   } else if (isPass) {
-    title = "Voldoende";
-    message = "Je zit in de goede richting, maar het kan nog beter voor de 100% score.";
+    title = "Lekkere warming-up 👍";
+    message = "Je zit in de goede flow, maar we gaan voor goud. Nog even finetunen die handel!";
     HeaderIcon = ThumbsUp;
     bgClass = "bg-orange-500";
   }
@@ -53,7 +53,7 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ score, hintsUsed, 
 
         <div className="p-6 space-y-4">
           <div className="flex justify-between items-center py-3 border-b border-gray-100">
-            <span className="text-gray-600">Jouw score</span>
+            <span className="text-gray-600">Jouw prestatie</span>
             <span className={`text-4xl font-bold ${isPass ? 'text-green-600' : 'text-han-red'}`}>
               {score}%
             </span>
@@ -61,15 +61,15 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ score, hintsUsed, 
 
           <div className="space-y-2 text-sm text-gray-600 bg-gray-50 p-4 rounded-lg">
             <div className="flex justify-between">
-              <span>Hints gebruikt:</span>
+              <span>Hulplijnen ingezet:</span>
               <span className="font-medium text-gray-900">{hintsUsed}</span>
             </div>
             <div className="flex justify-between">
-              <span>Max. haalbare score met deze hints:</span>
+              <span>Eerlijke max. score (zonder hints):</span>
               <span className="font-medium text-gray-900">{maxPossible}%</span>
             </div>
             <p className="text-xs text-gray-400 mt-2 italic border-t border-gray-200 pt-2">
-              *Tips: Probeer het zonder hints om de 100% te halen en de beloning te verdienen!
+              *Pro-tip: Echte kampioenen doen het zonder spiekbriefjes voor die 100%!
             </p>
           </div>
 
@@ -78,7 +78,7 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ score, hintsUsed, 
               onClick={onRetry}
               className="flex-1 px-4 py-3 bg-han-dark text-white font-medium rounded-lg hover:bg-black transition-colors shadow-lg shadow-black/10"
             >
-              Opnieuw proberen
+              Nog een rondje knallen
             </button>
           </div>
         </div>

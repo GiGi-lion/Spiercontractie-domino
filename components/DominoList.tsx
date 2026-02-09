@@ -1,7 +1,7 @@
 import React from 'react';
-import { Reorder, useDragControls, motion } from 'framer-motion';
+import { Reorder, useDragControls } from 'framer-motion';
 import { DominoItem } from '../types';
-import { Lock, GripVertical, CheckCircle2, XCircle } from 'lucide-react';
+import { Lock, GripVertical, XCircle } from 'lucide-react';
 
 interface DominoListProps {
   items: DominoItem[];
@@ -33,9 +33,17 @@ const Item = ({ item, showFeedback }: { item: DominoItem, showFeedback: boolean 
       dragListener={!item.isLocked}
       dragControls={controls}
       layout
-      className={`relative flex items-center p-4 mb-3 rounded-lg border-2 shadow-sm transition-all ${borderColor} ${bgColor} ${item.isLocked ? 'cursor-not-allowed opacity-90' : 'cursor-grab active:cursor-grabbing hover:border-han-red/50'}`}
+      // VERANDERD: transition-all weggehaald en vervangen door transition-colors.
+      // transition-all zorgt voor vertraging (lag) tijdens het slepen omdat het de transform probeert te animeren.
+      className={`relative flex items-center p-4 mb-3 rounded-lg border-2 shadow-sm transition-colors duration-200 ${borderColor} ${bgColor} ${item.isLocked ? 'cursor-not-allowed opacity-90' : 'cursor-grab active:cursor-grabbing hover:border-han-red/50'}`}
+      style={{ touchAction: 'none' }}
     >
-      <div className="mr-4 flex-shrink-0">
+      <div 
+        className="mr-4 flex-shrink-0 cursor-grab active:cursor-grabbing"
+        onPointerDown={(e) => {
+           if(!item.isLocked) controls.start(e);
+        }}
+      >
         {icon}
       </div>
       <div className="flex-grow font-medium text-gray-800 select-none">
@@ -44,7 +52,7 @@ const Item = ({ item, showFeedback }: { item: DominoItem, showFeedback: boolean 
       
       {/* Visual Feedback Overlay (only when Checked) */}
       {showFeedback && !item.isLocked && (
-        <div className="absolute right-4">
+        <div className="absolute right-4 pointer-events-none">
            {/* Placeholder for alignment */}
         </div>
       )}
@@ -62,13 +70,9 @@ export const DominoList: React.FC<DominoListProps> = ({ items, setItems, showFee
           <div key={item.id} className="relative group">
             <Item item={item} showFeedback={showFeedback} />
             
-            {showFeedback && !item.isLocked && (
+            {showFeedback && !item.isLocked && !isCorrectPosition && (
               <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none z-10">
-                {isCorrectPosition ? (
-                   <CheckCircle2 className="w-6 h-6 text-green-500 fill-white" />
-                ) : (
                    <XCircle className="w-6 h-6 text-orange-400 fill-white" />
-                )}
               </div>
             )}
           </div>

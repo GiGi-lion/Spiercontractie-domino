@@ -4,7 +4,7 @@ import { History } from './components/History';
 import { FeedbackModal } from './components/FeedbackModal';
 import { INITIAL_ITEMS, TOTAL_ITEMS } from './constants';
 import { DominoItem, Attempt } from './types';
-import { Activity, Lightbulb, CheckCircle, RotateCcw } from 'lucide-react';
+import { Activity, Lightbulb, CheckCircle, RotateCcw, BrainCircuit } from 'lucide-react';
 import canvasConfetti from 'canvas-confetti';
 
 // Helper to shuffle array
@@ -68,7 +68,7 @@ export default function App() {
     );
 
     if (incorrectlyPlacedItems.length === 0) {
-      alert("Alle overgebleven blokjes liggen al goed (of zijn vastgezet)!");
+      alert("Joh, alles ligt al goed (of vast)! Je hebt geen spiekbriefje meer nodig.");
       return;
     }
 
@@ -155,12 +155,12 @@ export default function App() {
               <Activity className="w-6 h-6" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900 tracking-tight">Spiercontractie-domino</h1>
-              <p className="text-xs text-gray-500">Sleep de stappen in de juiste fysiologische volgorde</p>
+              <h1 className="text-xl font-bold text-gray-900 tracking-tight">De Spier-Domino Challenge 🏋️</h1>
+              <p className="text-xs text-gray-500">Sleep die fysiologische chaos weer op orde!</p>
             </div>
           </div>
           <div className="text-sm font-medium text-han-red bg-rose-50 px-3 py-1 rounded-full border border-rose-100">
-             Poging {attempts.length + 1}
+             Poging #{attempts.length + 1}
           </div>
         </div>
       </header>
@@ -175,11 +175,11 @@ export default function App() {
              <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6 pb-6 border-b border-gray-100">
                 <div>
                     <h2 className="text-lg font-bold text-gray-800 flex items-center gap-2">
-                    De Ordening
+                    De Puzzel
                     <span className="text-xs font-normal text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full border border-gray-200">Sliding Filament Theory</span>
                     </h2>
                     <div className="text-sm text-gray-400 italic mt-1">
-                    {hintsUsed > 0 ? `${hintsUsed} hint(s) gebruikt` : 'Nog geen hints gebruikt'}
+                    {hintsUsed > 0 ? `${hintsUsed} hulplijn(en) ingezet 🆘` : 'Nog geen spiekhulp gebruikt 💪'}
                     </div>
                 </div>
 
@@ -187,7 +187,7 @@ export default function App() {
                   onClick={handleCheck}
                   className="w-full sm:w-auto flex items-center justify-center gap-2 px-6 py-2.5 text-base font-bold text-white bg-han-red rounded-lg hover:bg-red-700 shadow-md hover:shadow-lg transition-all transform active:scale-95"
                 >
-                  <CheckCircle className="w-5 h-5" /> Controleer
+                  <CheckCircle className="w-5 h-5" /> Check it! 🚀
                 </button>
              </div>
              
@@ -203,14 +203,14 @@ export default function App() {
                 onClick={handleReset}
                 className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-600 bg-gray-50 border border-gray-200 rounded-lg hover:bg-gray-100 transition-colors"
                 >
-                <RotateCcw className="w-4 h-4" /> Reset huidige
+                <RotateCcw className="w-4 h-4" /> Opnieuw husselen
                 </button>
                 <button 
                 onClick={handleHint}
                 disabled={hintsUsed >= TOTAL_ITEMS - 1}
                 className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-orange-700 bg-orange-50 border border-orange-200 rounded-lg hover:bg-orange-100 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                 >
-                <Lightbulb className="w-4 h-4" /> Hint (+1)
+                <Lightbulb className="w-4 h-4" /> Spiekbriefje (+1)
                 </button>
              </div>
           </div>
@@ -222,14 +222,14 @@ export default function App() {
           
           <div className="bg-white/95 backdrop-blur-sm p-5 rounded-xl border border-rose-100 shadow-sm">
             <h3 className="font-bold mb-3 flex items-center gap-2 text-han-red">
-              <Activity className="w-4 h-4" />
-              Spelregels
+              <BrainCircuit className="w-4 h-4" />
+              Game Rules
             </h3>
             <ul className="list-disc list-inside space-y-2 ml-1 text-sm text-gray-600">
-              <li>Sleep de stappen van de spiercontractie naar de juiste positie.</li>
-              <li>Gebruik een <span className="text-orange-600 font-medium">hint</span> om een stap vast te zetten (rood).</li>
-              <li>Vastgezette stappen tellen <strong>niet</strong> mee voor je score.</li>
-              <li>Je krijgt alleen een beloning bij <strong>100%</strong> score!</li>
+              <li>Orden de chaos: sleep de stappen naar de juiste plek.</li>
+              <li>Vastloper? Koop een <span className="text-orange-600 font-medium">hint</span> (kost je wel eerpunten, valsspeler).</li>
+              <li>Rode blokjes staan vast (gratis punten, soort van).</li>
+              <li>Alleen bij <strong>100%</strong> (zonder kramp) krijg je confetti! 🎉</li>
             </ul>
           </div>
         </div>
