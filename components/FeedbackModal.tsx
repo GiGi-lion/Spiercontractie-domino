@@ -9,6 +9,18 @@ interface FeedbackModalProps {
   onRetry: () => void;
 }
 
+const MuscleContractionAnimation = () => {
+  return (
+    <div className="flex justify-center items-center p-4 bg-white rounded-xl mb-4 border border-gray-100 shadow-sm">
+      <img 
+        src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Animation_biceps.gif" 
+        alt="Biceps contractie animatie"
+        className="w-full max-w-[280px] h-auto object-contain"
+      />
+    </div>
+  );
+};
+
 export const FeedbackModal: React.FC<FeedbackModalProps> = ({ score, hintsUsed, isOpen, onClose, onRetry }) => {
   if (!isOpen) return null;
 
@@ -35,8 +47,8 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ score, hintsUsed, 
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden transform transition-all scale-100 border border-gray-100">
-        <div className={`p-6 text-white ${bgClass}`}>
+      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full overflow-hidden transform transition-all scale-100 border border-gray-100 max-h-[90vh] flex flex-col">
+        <div className={`p-6 text-white ${bgClass} shrink-0`}>
           <div className="flex justify-between items-start">
             <div className="flex items-center gap-2">
                 <HeaderIcon className="w-7 h-7" />
@@ -51,7 +63,9 @@ export const FeedbackModal: React.FC<FeedbackModalProps> = ({ score, hintsUsed, 
           </p>
         </div>
 
-        <div className="p-6 space-y-4">
+        <div className="p-6 space-y-4 overflow-y-auto">
+          {isPerfect && <MuscleContractionAnimation />}
+
           <div className="flex justify-between items-center py-3 border-b border-gray-100">
             <span className="text-gray-600">Jouw prestatie</span>
             <span className={`text-4xl font-bold ${isPass ? 'text-green-600' : 'text-han-red'}`}>

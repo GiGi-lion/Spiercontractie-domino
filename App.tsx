@@ -155,8 +155,8 @@ export default function App() {
               <Activity className="w-6 h-6" />
             </div>
             <div>
-              <h1 className="text-xl font-bold text-gray-900 tracking-tight">De Spier-Domino Challenge 🏋️</h1>
-              <p className="text-xs text-gray-500">Sleep die fysiologische chaos weer op orde!</p>
+              <h1 className="text-xl font-bold text-gray-900 tracking-tight">Spiercontractie Domino Challenge 🏋️</h1>
+              <p className="text-xs text-gray-500">Sleep die fysiologische chaos weer op orde en laat de spier samentrekken!</p>
             </div>
           </div>
           <div className="text-sm font-medium text-han-red bg-rose-50 px-3 py-1 rounded-full border border-rose-100">
